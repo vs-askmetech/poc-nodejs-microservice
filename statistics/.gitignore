@@ -1,0 +1,12 @@
+node_modules
+.env
+logs/app.log
+# compiled output
+/dist
+/node_modules
+.env
+env.ps1
+node_modules/
+/logs/app.log
+.yarn
+# package-lock.json
