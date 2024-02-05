@@ -1,8 +1,18 @@
 const router = require('express').Router()
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.json(process.env.ENV_NAME)
-}) 
-router.use('/statistics', require('./statistics'))
+const StatisticsController = require('../controllers/StatisticsController')
+const logger = require('../config/winston')
+
+/**
+ * Router file for Statistics.
+ */
+router.get('/', async (req, res) => {
+  try {
+    const data = await StatisticsController.getStatisticsData()
+    res.json(data)
+  } catch (error) {
+    logger.error(error.stack)
+    res.sendStatus(500)
+  }
+})
 
 module.exports = router
